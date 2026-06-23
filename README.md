@@ -68,7 +68,7 @@
 <p> The Process ID of brave.exe was <strong>4856</strong>. </p>
 <br>
 <p> <strong> 4. How many established network connections were there at the time of acquisition? </strong></p>
-<p> In order to identify the established network connections upon acquisition, we can use the netscan plugin targetting "ESTABLISHED" connections. </p>
+<p> In order to identify the established network connections upon acquisition, we can use the netscan plugin targeting "ESTABLISHED" connections. </p>
 <pre> <code lang="bash"> python3 vol.py -f "path/to/20210430-Win10Home-20H2-64bit-memdump.mem" windows.netscan | grep -i "ESTABLISHED" </code> </pre>
 <img width="1656" height="241" alt="Screenshot 2026-06-23 143210" src="https://github.com/user-attachments/assets/73c09448-d6b0-4607-a25b-89e76bd4073d" />
 <p> The total established connections was <strong>10</strong>. </p>
@@ -76,9 +76,9 @@
 <p> <strong> 5. Which domain name does Chrome have an established network connection with? </strong> </p>
 <p> According to the last screenshot, we can identify that chrome.exe had the established connection with an IP Address 185.70.41.130 </p>
 <img width="1652" height="238" alt="Screenshot 2026-06-23 143703" src="https://github.com/user-attachments/assets/d23b60f0-0d34-4b94-bdf8-7767c0c83f7b" />
-<p> Therefore, we can determine the domain name for this IP address with the open source intel Whois. </p> 
+<p> Therefore, we can determine the domain name for this IP address with the open-source intelligence WHOIS. </p> 
 <img width="970" height="610" alt="Screenshot 2026-06-23 144736" src="https://github.com/user-attachments/assets/333773f0-e706-44f9-8088-19cf77022172" />
-<p> The WHOIS lookup confirms that the IP address originates from Switzerland and belongs to <strong>protonmail.ch</strong>. </p> 
+<p> The WHOIS lookup confirms that the IP address originates from Switzerland and belongs to <strong>protonmail[.]ch</strong>. </p> 
 <br>
 <p> <strong> 6. What is the MD5 hash value of the process executable for PID 6988? </strong> </p>
 <p> First, we extracted the process executable for PID 6988 using the plugin pslist with the flag --dump. </p>
@@ -100,7 +100,7 @@
   <li> -s: specific offset </li>
   <li> -l: the number of bytes </li>
 </ul>
-<p> Therefore, xxd looked at the first 6 bytes of string located at memory offset 0x45BE876. </p>
+<p> Therefore, xxd looks directly at the first 6 bytes of the string located at memory offset 0x45BE876. </p>
 <img width="1296" height="41" alt="Screenshot 2026-06-23 153740" src="https://github.com/user-attachments/assets/842f0ef0-7d39-4d6a-85a0-dc939bd7e59b" />
 <p> The first 6 bytes of the string was <strong>hacker</strong>. </p>
 <br>
@@ -108,7 +108,7 @@
 <p> First, we needed to identify the parent process ID of powershell.exe using the plugin pslist. </p>
 <pre> <code lang="bash"> python3 vol.py -f "path/to/20210430-Win10Home-20H2-64bit-memdump.mem" windows.pslist | grep -i "powershell.exe" </code> </pre>
 <img width="1677" height="43" alt="Screenshot 2026-06-23 154215" src="https://github.com/user-attachments/assets/884afef7-8dfe-4599-93de-7a02c92632ec" />
-<p> The PPID was 4352. Then we can find the creation date and time using the same plugin targetting the parent prcoess ID. </p>
+<p> The PPID was 4352. Then we can find the creation date and time using the same plugin targeting the parent prcoess ID. </p>
 <pre> <code lang="bash"> python3 vol.py -f "path/to/20210430-Win10Home-20H2-64bit-memdump.mem" windows.pslist --pid 4352 </code> </pre>
 <img width="1513" height="132" alt="Screenshot 2026-06-23 154438" src="https://github.com/user-attachments/assets/41702e92-bb4e-4695-96a1-86a3e8584d80" />
 <p> The parent process was explorer.exe created at <strong>2021-04-30 17:39</strong>. </p>
@@ -120,7 +120,7 @@
 <p> The attacker directly clicked on the file containing account numbers in the path <strong>C:\Users\JOHNDO~1\AppData\Local\Temp\7zO4FB31F24\accountNum</strong>. </p>
 <br>
 <p> <strong> 10. How long did the suspect use Brave browser? (In Hours) </strong> </p>
-<p> This question also took me long time to think until I looked at the hints. We can use the registry.userassist plugin to extract the proccess running time in the user's NTUSER.DAT registry hive, reminding me the EZ Tools...</p>
+<p> This question also took me long time to think until I looked at the hints. We can use the registry.userassist plugin to extract the process running time in the user's NTUSER.DAT registry hive, reminding me the EZ Tools...</p>
 <pre> <code lang="bash"> python3 vol.py -f "path/to/20210430-Win10Home-20H2-64bit-memdump.mem" windows.registry.userassist | grep -i "Brave" </code> </pre>
 <img width="1805" height="238" alt="Screenshot 2026-06-23 161244" src="https://github.com/user-attachments/assets/7c418edf-cefc-4a8b-a381-8a73b82a0187" />
 <p> Based on the result, the Brave browser was run for about <strong>4</strong> hours. </p>
